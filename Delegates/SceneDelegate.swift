@@ -13,9 +13,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        
+        ProgressHUD.colorHUD = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
+        ProgressHUD.colorBackground = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
+        ProgressHUD.colorAnimation = .black
+        ProgressHUD.colorProgress = .black
+        DispatchQueue.main.async {
+            self.loginRoot()
+        }
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 
@@ -49,7 +54,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Save changes in the application's managed object context when the application transitions to the background.
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
+    func loginRoot(){
 
+        
+        let VC = BaseNavigationController.init()
+        VC.modalPresentationStyle = .fullScreen
+        window?.rootViewController = VC
+    }
 
 }
 
